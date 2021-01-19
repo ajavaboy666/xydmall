@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.edu118.xydmall</groupId>
+    <artifactId>xydmall</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>xydmall</name>
+    <description>父项目</description>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <version>2.3.0.RELEASE</version>
+        <artifactId>spring-boot-starter-parent</artifactId>
+    </parent>
+
+    <modules>
+        <module>xydmall-commodity</module>
+        <module>xydmall-common</module>
+        <module>xydmall-member</module>
+        <module>xydmall-order</module>
+        <module>xydmall-sale</module>
+        <module>xydmall-warehouse</module>
+    </modules>
+</project>
