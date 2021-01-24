@@ -1,0 +1,31 @@
+package com.edu118.member.service.impl;
+
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.edu118.common.utils.PageUtils;
+import com.edu118.common.utils.Query;
+
+import com.edu118.member.dao.MemberCollectSubjectDao;
+import com.edu118.common.entity.member.MemberCollectSubjectEntity;
+import com.edu118.common.service.member.MemberCollectSubjectService;
+
+
+@Service("memberCollectSubjectService")
+public class MemberCollectSubjectServiceImpl extends ServiceImpl<MemberCollectSubjectDao, MemberCollectSubjectEntity> implements MemberCollectSubjectService {
+
+    @Override
+    public PageUtils queryPage(Map<String, Object> params) {
+        IPage<MemberCollectSubjectEntity> page = this.page(
+                new Query<MemberCollectSubjectEntity>().getPage(params),
+                new QueryWrapper<MemberCollectSubjectEntity>()
+        );
+
+        return new PageUtils(page);
+    }
+
+}

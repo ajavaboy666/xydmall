@@ -1,0 +1,33 @@
+server:
+  port: 18500
+nacos:
+  addr: 192.168.184.134:8848
+  namespace: c2c0e11c-c552-4d13-9781-04b03cbead04
+  project-name: xydmall-commodity
+spring:
+  application:
+    name: ${nacos.project-name}
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${nacos.addr}
+        #namespace: ${nacos.namespace}
+        #group: ${nacos.project-name}
+      config:
+        file-extension: yaml
+        namespace: ${nacos.namespace}
+        server-addr: ${nacos.addr}
+        group: dev
+        extension-configs:
+          - dataId: mysql-conf.yml
+            group: dev
+            refresh: true
+          - dataId: mybatis.yml
+            group: dev
+            refresh: true
+          - dataId: spring-other.yml
+            group: dev
+            refresh: true
+          - dataId: dubbo.yml
+            group: dev
+            refresh: true

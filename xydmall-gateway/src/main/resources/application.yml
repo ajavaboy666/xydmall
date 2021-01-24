@@ -1,0 +1,16 @@
+server:
+  port: 18550
+spring:
+  application:
+    name: xydmall-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.184.134:8848
+    gateway:
+      routes:
+        - id: xydmall-commodity
+          uri: http://localhost:18500
+          predicates:
+            - Path=/commodity/**
+
