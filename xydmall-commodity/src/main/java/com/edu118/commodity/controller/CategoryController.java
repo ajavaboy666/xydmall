@@ -1,10 +1,18 @@
 package com.edu118.commodity.controller;
 
+import com.edu118.common.annotation.RedisDataType;
+import com.edu118.common.annotation.RedisQueryCache;
+import com.edu118.common.config.XydRedisUtils;
 import com.edu118.common.entity.commodity.CategoryEntity;
 import com.edu118.common.service.commodity.CategoryService;
 import com.edu118.common.utils.PageUtils;
 import com.edu118.common.utils.R;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -22,15 +30,28 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping("commodity/category")
+@Log4j2
+@CacheConfig(cacheNames="commodity")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
-
+   // @Autowired
+    //private RedisTemplate<String,Object> redisTemplate;
+    @Autowired
+    private XydRedisUtils xydRedisUtils;
     /**
      * 查询菜单分类数据  以tree形式返回
      */
     @RequestMapping("/list/tree")
+    //@RedisQueryCache(key = "XydmallRedisKeys.COMMODITY_CATEGORY_LIST_TREE",type = RedisDataType.LIST)
+    @Cacheable(key = "'category:'+#root.methodName")
     public R listTree() {
+//        Object redisCache = redisTemplate.opsForValue().get("commodity:category:list_tree");
+//        if (redisCache != null) {
+//            log.trace("缓存的数据为：{}",redisCache);
+//            return R.ok().put("datas",redisCache);
+//        }
+
         List<CategoryEntity> categoryAll = categoryService.list();
         //获取一级菜单
         List<CategoryEntity> oneCategory = getChildren(categoryAll, 1);
@@ -40,7 +61,12 @@ public class CategoryController {
         List<CategoryEntity> threeCategory = getChildren(categoryAll, 3);
         twoCategory = setChildrens(twoCategory, threeCategory);
         oneCategory = setChildrens(oneCategory, twoCategory);
-        return R.ok().put("菜单分类数据", oneCategory);
+//        xydRedisUtils.lSet(
+//                "XydmallRedisKeys.COMMODITY_CATEGORY_LIST_TREE",
+//                oneCategory);
+//        redisTemplate.opsForValue().set("commodity:category:list_tree",oneCategory);
+//        log.trace("未缓存的数据为：{}",oneCategory);
+        return R.ok().put("datas", oneCategory);
     }
 
     /**
@@ -93,7 +119,7 @@ public class CategoryController {
     public R save(@RequestBody CategoryEntity category) {
         categoryService.save(category);
 
-        return R.ok();
+        return R.ok("数据保存成功").put("data",category);
     }
 
     /**

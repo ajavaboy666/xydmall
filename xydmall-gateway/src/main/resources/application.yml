@@ -12,5 +12,19 @@ spring:
         - id: xydmall-commodity
           uri: http://localhost:18500
           predicates:
-            - Path=/commodity/**
+            - Path=/xyd-api/commodity/**
+          filters:
+            - RewritePath=/xyd-api/(?<segment>.*),/$\{segment}
+        - id: xydmall-externalservice
+          uri: http://localhost:18560
+          predicates:
+            - Path=/xyd-api/oss/**
+          filters:
+            - RewritePath=/xyd-api/(?<segment>.*),/$\{segment}
+        - id: renren-admin
+          uri: lb://renren-fast
+          predicates:
+            - Path=/xyd-api/**
+          filters:
+            - RewritePath=/xyd-api/(?<segment>.*),/renren-fast/$\{segment}
 

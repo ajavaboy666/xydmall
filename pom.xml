@@ -23,5 +23,6 @@
         <module>xydmall-sale</module>
         <module>xydmall-warehouse</module>
         <module>renren-fast</module>
+        <module>xydmall-externalservice</module>
     </modules>
 </project>

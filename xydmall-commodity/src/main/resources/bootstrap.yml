@@ -31,3 +31,6 @@ spring:
           - dataId: dubbo.yml
             group: dev
             refresh: true
+          - dataId: redis.yml
+            group: dev
+            refresh: true
