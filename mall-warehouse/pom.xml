@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.edu118.mall</groupId>
+    <artifactId>mall-warehouse</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>mall-warehouse</name>
+    <description>仓库服务</description>
+
+    <parent>
+        <groupId>com.edu118.mall</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+        <artifactId>mall</artifactId>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.edu118.mall</groupId>
+            <artifactId>mall-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+</project>

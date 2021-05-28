@@ -63,7 +63,7 @@ public class DataSourceAspect {
 
         try {
             return point.proceed();
-        } finally {
+        } fimally {
             DynamicContextHolder.poll();
             logger.debug("clean datasource");
         }

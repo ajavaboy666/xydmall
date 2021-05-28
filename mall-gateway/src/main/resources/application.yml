@@ -1,0 +1,30 @@
+server:
+  port: 18550
+spring:
+  application:
+    name: mall-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.184.134:8848
+    gateway:
+      routes:
+        - id: mall-commodity
+          uri: http://localhost:18500
+          predicates:
+            - Path=/xyd-api/commodity/**
+          filters:
+            - RewritePath=/xyd-api/(?<segment>.*),/$\{segment}
+        - id: mall-externalservice
+          uri: http://localhost:18560
+          predicates:
+            - Path=/xyd-api/oss/**
+          filters:
+            - RewritePath=/xyd-api/(?<segment>.*),/$\{segment}
+        - id: renren-admin
+          uri: lb://renren-fast
+          predicates:
+            - Path=/xyd-api/**
+          filters:
+            - RewritePath=/xyd-api/(?<segment>.*),/renren-fast/$\{segment}
+

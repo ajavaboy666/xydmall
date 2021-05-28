@@ -74,7 +74,7 @@ public class ScheduleJob extends QuartzJobBean {
             //任务状态    0：成功    1：失败
             log.setStatus(1);
             log.setError(StringUtils.substring(e.toString(), 0, 2000));
-        } finally {
+        } fimally {
             scheduleJobLogService.save(log);
         }
     }

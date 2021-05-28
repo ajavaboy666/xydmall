@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.edu118.xydmall</groupId>
-    <artifactId>xydmall</artifactId>
+    <groupId>com.edu118.mall</groupId>
+    <artifactId>mall</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>xydmall</name>
+    <name>mall</name>
     <description>父项目</description>
     <packaging>pom</packaging>
 
@@ -16,13 +16,13 @@
     </parent>
 
     <modules>
-        <module>xydmall-commodity</module>
-        <module>xydmall-common</module>
-        <module>xydmall-member</module>
-        <module>xydmall-order</module>
-        <module>xydmall-sale</module>
-        <module>xydmall-warehouse</module>
+        <module>mall-commodity</module>
+        <module>mall-common</module>
+        <module>mall-member</module>
+        <module>mall-order</module>
+        <module>mall-sale</module>
+        <module>mall-warehouse</module>
         <module>renren-fast</module>
-        <module>xydmall-externalservice</module>
+        <module>mall-externalservice</module>
     </modules>
 </project>

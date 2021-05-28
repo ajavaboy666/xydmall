@@ -3518,7 +3518,7 @@
 
                 // NOTE 1 The argument is ignored.
 
-                // NOTE 2 The toJSON function is intentionally generic; it does not
+                // NOTE 2 The toJSON function is intentiomally generic; it does not
                 // require that its this value be a Date object. Therefore, it can be
                 // transferred to other kinds of objects for use as a method. However,
                 // it does require that any such object have a toISOString method. An
@@ -4023,10 +4023,10 @@
                 } else {
                     var wrappedReplaceValue = function (match) {
                         var length = arguments.length;
-                        var originalLastIndex = searchValue.lastIndex;
+                        var origimallastIndex = searchValue.lastIndex;
                         searchValue.lastIndex = 0;
                         var args = searchValue.exec(match) || [];
-                        searchValue.lastIndex = originalLastIndex;
+                        searchValue.lastIndex = origimallastIndex;
                         pushCall(args, arguments[length - 2], arguments[length - 1]);
                         return replaceValue.apply(this, args);
                     };
@@ -4098,10 +4098,10 @@
             }
         }, hasLastIndexBug);
 
-        var originalLastIndexOf = StringPrototype.lastIndexOf;
+        var origimallastIndexOf = StringPrototype.lastIndexOf;
         defineProperties(StringPrototype, {
             lastIndexOf: function lastIndexOf(searchString) {
-                return originalLastIndexOf.apply(this, arguments);
+                return origimallastIndexOf.apply(this, arguments);
             }
         }, StringPrototype.lastIndexOf.length !== 1);
 
@@ -9720,7 +9720,7 @@
                     return DomUtils.getText(DomUtils.getElementsByTagName(what, where, recurse, 1)).trim()
                 }
 
-                function addConditionally(obj, prop, what, where, recurse) {
+                function addConditiomally(obj, prop, what, where, recurse) {
                     var tmp = fetch(what, where, recurse);
                     if (tmp) obj[prop] = tmp
                 }
@@ -9734,17 +9734,17 @@
                         if (feedRoot.name === "feed") {
                             childs = feedRoot.children;
                             feed.type = "atom";
-                            addConditionally(feed, "id", "id", childs);
-                            addConditionally(feed, "title", "title", childs);
+                            addConditiomally(feed, "id", "id", childs);
+                            addConditiomally(feed, "title", "title", childs);
                             if ((tmp = getOneElement("link", childs)) && (tmp = tmp.attribs) && (tmp = tmp.href)) feed.link = tmp;
-                            addConditionally(feed, "description", "subtitle", childs);
+                            addConditiomally(feed, "description", "subtitle", childs);
                             if (tmp = fetch("updated", childs)) feed.updated = new Date(tmp);
-                            addConditionally(feed, "author", "email", childs, true);
+                            addConditiomally(feed, "author", "email", childs, true);
                             feed.items = getElements("entry", childs).map(function (item) {
                                 var entry = {}, tmp;
                                 item = item.children;
-                                addConditionally(entry, "id", "id", item);
-                                addConditionally(entry, "title", "title", item);
+                                addConditiomally(entry, "id", "id", item);
+                                addConditiomally(entry, "title", "title", item);
                                 if ((tmp = getOneElement("link", item)) && (tmp = tmp.attribs) && (tmp = tmp.href)) entry.link = tmp;
                                 if (tmp = fetch("summary", item) || fetch("content", item)) entry.description = tmp;
                                 if (tmp = fetch("updated", item)) entry.pubDate = new Date(tmp);
@@ -9754,18 +9754,18 @@
                             childs = getOneElement("channel", feedRoot.children).children;
                             feed.type = feedRoot.name.substr(0, 3);
                             feed.id = "";
-                            addConditionally(feed, "title", "title", childs);
-                            addConditionally(feed, "link", "link", childs);
-                            addConditionally(feed, "description", "description", childs);
+                            addConditiomally(feed, "title", "title", childs);
+                            addConditiomally(feed, "link", "link", childs);
+                            addConditiomally(feed, "description", "description", childs);
                             if (tmp = fetch("lastBuildDate", childs)) feed.updated = new Date(tmp);
-                            addConditionally(feed, "author", "managingEditor", childs, true);
+                            addConditiomally(feed, "author", "managingEditor", childs, true);
                             feed.items = getElements("item", feedRoot.children).map(function (item) {
                                 var entry = {}, tmp;
                                 item = item.children;
-                                addConditionally(entry, "id", "guid", item);
-                                addConditionally(entry, "title", "title", item);
-                                addConditionally(entry, "link", "link", item);
-                                addConditionally(entry, "description", "description", item);
+                                addConditiomally(entry, "id", "guid", item);
+                                addConditiomally(entry, "title", "title", item);
+                                addConditiomally(entry, "link", "link", item);
+                                addConditiomally(entry, "description", "description", item);
                                 if (tmp = fetch("pubDate", item)) entry.pubDate = new Date(tmp);
                                 return entry
                             })
@@ -11301,7 +11301,7 @@
                         try {
                             Stream = require("st" + "ream")
                         } catch (_) {
-                        } finally {
+                        } fimally {
                             if (!Stream) Stream = require("events").EventEmitter
                         }
                     })();
@@ -12075,7 +12075,7 @@
                         try {
                             Stream = require("st" + "ream")
                         } catch (_) {
-                        } finally {
+                        } fimally {
                             if (!Stream) Stream = require("events").EventEmitter
                         }
                     })();
@@ -24480,13 +24480,13 @@
                  *
                  * @private
                  * @param {*} value The value to wrap.
-                 * @param {boolean} [chainAll] Enable chaining for all wrapper methods.
+                 * @param {boolean} [chaimall] Enable chaining for all wrapper methods.
                  * @param {Array} [actions=[]] Actions to peform to resolve the unwrapped value.
                  */
-                function LodashWrapper(value, chainAll, actions) {
+                function LodashWrapper(value, chaimall, actions) {
                     this.__wrapped__ = value;
                     this.__actions__ = actions || [];
-                    this.__chain__ = !!chainAll;
+                    this.__chain__ = !!chaimall;
                 }
 
                 LodashWrapper.prototype = baseCreate(baseLodash.prototype);
@@ -29192,7 +29192,7 @@
                         };
 
                         /**
-                         * Works almost like "finally", but not called for rejections.
+                         * Works almost like "fimally", but not called for rejections.
                          * Original resolution value is passed through callback unaffected.
                          * Callback may return a promise that will be awaited for.
                          * @param {Function} callback
@@ -29501,7 +29501,7 @@
                          * communication channel.
                          * @param object
                          * @returns promise a wrapping of that object that
-                         * additionally responds to the "isDef" message
+                         * additiomally responds to the "isDef" message
                          * without a rejection.
                          */
                         Q.master = master;
@@ -30070,12 +30070,12 @@
                          * ``fin`` is done.
                          */
                         Q.fin = // XXX legacy
-                            Q["finally"] = function (object, callback) {
-                                return Q(object)["finally"](callback);
+                            Q["fimally"] = function (object, callback) {
+                                return Q(object)["fimally"](callback);
                             };
 
                         Promise.prototype.fin = // XXX legacy
-                            Promise.prototype["finally"] = function (callback) {
+                            Promise.prototype["fimally"] = function (callback) {
                                 callback = Q(callback);
                                 return this.then(function (value) {
                                     return callback.fcall().then(function () {
@@ -31500,7 +31500,7 @@
                  * Get case-insensitive header `field` value.
                  * This is a deprecated internal API. Use `.get(field)` instead.
                  *
-                 * (getHeader is no longer used internally by the superagent code base)
+                 * (getHeader is no longer used intermally by the superagent code base)
                  *
                  * @param {String} field
                  * @return {String}
